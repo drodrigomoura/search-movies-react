@@ -1,18 +1,29 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import 'bulma/css/bulma.css'
 import { Title } from './components/Title'
 import { SearchForm } from './components/SearchForm'
 
-function App() {
-  return (
-    <div className="App">
-      <Title>Search movies</Title>
-      <div className="SearchForm-wrapper">
-        <SearchForm />
+class App extends Component {
+  state = { results: [] }
+
+  _handleResults = (results) => {
+    this.setState({ results })
+  }
+
+  render() {
+    return (
+      <div className="App" >
+        <Title>Search movies</Title>
+        <div className="SearchForm-wrapper">
+          <SearchForm onResults={this._handleResults} />
+        </div>
+        {this.state.results.length === 0
+          ? <p>Sin resultado</p>
+          : <p>Con resultado</p>}
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default App;

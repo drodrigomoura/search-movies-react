@@ -18,6 +18,8 @@ export class SearchForm extends Component {
             .then(res => res.json())
             .then(results => {
                 console.log(results)
+                const { Search, totalResults } = results
+                console.log(Search, totalResults)
             })
     }
 
